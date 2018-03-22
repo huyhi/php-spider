@@ -1,0 +1,20 @@
+{
+    "name": "annhuny/zhainanmao",
+    "authors": [
+        {
+            "name": "Annhuny",
+            "email": "annhuny@gmail.com"
+        }
+    ],
+    "require": {
+        "bupt1987/html-parser": "dev-master"
+    },
+    "autoload": {
+        "files": [
+            "tools/helpers.php"
+        ],
+        "psr-4": {
+            "App\\": "app/"
+        }
+    }
+}
