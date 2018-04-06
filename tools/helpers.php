@@ -16,8 +16,8 @@ function getImgsPerPage($url)
   $res = httpGet($url);
   $htmlDom = new \HtmlParser\ParserDom($res);
 
-  $breadcrumbs = $htmlDom->find('#breadcrumbs h1', 0)->getPlainText();
-  $dirPath = 'img/' . ltrim($breadcrumbs);
+  $breadcrumbs = ltrim($htmlDom->find('#breadcrumbs h1', 0)->getPlainText());
+  $dirPath = 'img/' . $breadcrumbs;
   
   if(! is_dir($dirPath)){
     mkdir($dirPath, 0777, true);
@@ -33,7 +33,7 @@ function getImgsPerPage($url)
       fwrite($objFile, $binStream);
       fclose($objFile);
   
-      printf("%s %d / %d", $breadcrumbs, $i++, $imgsCount);
+      printf("%s %d / %d \n", $breadcrumbs, $i++, $imgsCount);
     }
   }
 }
@@ -49,4 +49,10 @@ function getPerPageUrls($url){
   }
 
   return $urls;
+}
+
+function getPageCounts($url){
+  $res = httpGet($url);
+  $htmlDom = new \HtmlParser\ParserDom($res);
+  return $htmlDom->find('.pagination span a', -2)->getPlainText();
 }

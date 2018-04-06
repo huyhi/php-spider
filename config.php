@@ -1,6 +1,6 @@
 <?php
 return [
-  'page' => 23,
+  'page' => '',
   'root' => 'http://www.zhainanmao.com/',
   'class' => [
     'nvshen/'
